@@ -181,11 +181,12 @@
 //#define DUMMY_THERMISTOR_998_VALUE 25
 //#define DUMMY_THERMISTOR_999_VALUE 100
 // :{ '0': "Not used", '4': "10k !! do not use for a hotend. Bad resolution at high temp. !!", '1': "100k / 4.7k - EPCOS", '51': "100k / 1k - EPCOS", '6': "100k / 4.7k EPCOS - Not as accurate as Table 1", '5': "100K / 4.7k - ATC Semitec 104GT-2 (Used in ParCan & J-Head)", '7': "100k / 4.7k Honeywell 135-104LAG-J01", '71': "100k / 4.7k Honeywell 135-104LAF-J01", '8': "100k / 4.7k 0603 SMD Vishay NTCS0603E3104FXT", '9': "100k / 4.7k GE Sensing AL03006-58.2K-97-G1", '10': "100k / 4.7k RS 198-961", '11': "100k / 4.7k beta 3950 1%", '12': "100k / 4.7k 0603 SMD Vishay NTCS0603E3104FXT (calibrated for Makibox hot bed)", '13': "100k Hisens 3950  1% up to 300°C for hotend 'Simple ONE ' & hotend 'All In ONE'", '60': "100k Maker's Tool Works Kapton Bed Thermistor beta=3950", '55': "100k / 1k - ATC Semitec 104GT-2 (Used in ParCan & J-Head)", '2': "200k / 4.7k - ATC Semitec 204GT-2", '52': "200k / 1k - ATC Semitec 204GT-2", '-3': "Thermocouple + MAX31855 (only for sensor 0)", '-2': "Thermocouple + MAX6675 (only for sensor 0)", '-1': "Thermocouple + AD595", '3': "Mendel-parts / 4.7k", '1047': "Pt1000 / 4.7k", '1010': "Pt1000 / 1k (non standard)", '20': "PT100 (Ultimainboard V2.x)", '147': "Pt100 / 4.7k", '110': "Pt100 / 1k (non-standard)", '998': "Dummy 1", '999': "Dummy 2" }
-#define TEMP_SENSOR_0 20
-#define TEMP_SENSOR_1 0
+// MarkG use 5 instead of 20, zero bed, set 1 to 5 (FSR)
+#define TEMP_SENSOR_0 5
+#define TEMP_SENSOR_1 5
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_3 0
-#define TEMP_SENSOR_BED 5
+#define TEMP_SENSOR_BED 0
 
 // This makes temp sensor 1 a redundant sensor for sensor 0. If the temperatures difference between these sensors is to high the print will be aborted.
 //#define TEMP_SENSOR_1_AS_REDUNDANT
@@ -205,7 +206,8 @@
 // to check that the wiring to the thermistor is not broken.
 // Otherwise this would lead to the heater being powered on all the time.
 #define HEATER_0_MINTEMP 5
-#define HEATER_1_MINTEMP 5
+// MarkG use 0 instead of 5, avoud mintemp (FSR)
+#define HEATER_1_MINTEMP 0
 #define HEATER_2_MINTEMP 5
 #define HEATER_3_MINTEMP 5
 #define BED_MINTEMP 5
@@ -213,7 +215,9 @@
 // When temperature exceeds max temp, your heater will be switched off.
 // This feature exists to protect your hotend from overheating accidentally, but *NOT* from thermistor short/failure!
 // You should use MINTEMP for thermistor short/failure protection.
-#define HEATER_0_MAXTEMP 380 // !!LOWER!! to <= 275 if you don't use a PT100
+//#define HEATER_0_MAXTEMP 380 // !!LOWER!! to <= 275 if you don't use a PT100
+// MarkG
+#define HEATER_0_MAXTEMP 275 // !!LOWER!! to <= 275 if you don't use a PT100
 #define HEATER_1_MAXTEMP 275
 #define HEATER_2_MAXTEMP 275
 #define HEATER_3_MAXTEMP 275
@@ -271,9 +275,15 @@
   //#define  DEFAULT_Kd 72.06
 
   // E3Dv6 All Metal Hotend w/ PT100 Temperature Sensor
-  #define  DEFAULT_Kp 23.69
-  #define  DEFAULT_Ki 1.63
-  #define  DEFAULT_Kd 86.15
+  //#define  DEFAULT_Kp 23.69
+  //#define  DEFAULT_Ki 1.63
+  //#define  DEFAULT_Kd 86.15
+
+ //MarkG
+ // Deltaprintr Mini All Metal Hotend calibrated July 6
+  #define  DEFAULT_Kp 10.35
+  #define  DEFAULT_Ki 1.52
+  #define  DEFAULT_Kd 17.63
 
 #endif // PIDTEMP
 
@@ -289,7 +299,8 @@
 // If your configuration is significantly different than this and you don't understand the issues involved, you probably
 // shouldn't use bed PID until someone else verifies your hardware works.
 // If this is enabled, find your own PID constants below.
-#define PIDTEMPBED
+// MarkG
+//#define PIDTEMPBED
 
 //#define BED_LIMIT_SWITCHING
 
@@ -527,7 +538,8 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = true; // set to true to invert the lo
 // @section extruder
 
 // For direct drive extruder v9 set to true, for geared extruder set to false.
-#define INVERT_E0_DIR true	// For E3D Titan extruder
+// MarkG
+#define INVERT_E0_DIR false	// For E3D Titan extruder
 #define INVERT_E1_DIR false
 #define INVERT_E2_DIR false
 #define INVERT_E3_DIR false
@@ -668,11 +680,15 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = true; // set to true to invert the lo
   //  (0,0)
   #define X_PROBE_OFFSET_FROM_EXTRUDER 0.0   // X offset: -left  +right  [of the nozzle]
   #define Y_PROBE_OFFSET_FROM_EXTRUDER 0.0   // Y offset: -front +behind [the nozzle]
-  #define Z_PROBE_OFFSET_FROM_EXTRUDER 0.82  // Z offset: -below +above  [the nozzle]
+   //MarkG  too much, try original
+  //#define Z_PROBE_OFFSET_FROM_EXTRUDER 0.82  // Z offset: -below +above  [the nozzle]
+  #define Z_PROBE_OFFSET_FROM_EXTRUDER 0.125  // Z offset: -below +above  [the nozzle]
 
   #define XY_TRAVEL_SPEED 8000         // X and Y axis travel speed between probes, in mm/min.
 
-  #define Z_RAISE_BEFORE_PROBING 15   // How much the Z axis will be raised before traveling to the first probing point.
+  //#define Z_RAISE_BEFORE_PROBING 15   // How much the Z axis will be raised before traveling to the first probing point.
+  //MarkG  too close
+  #define Z_RAISE_BEFORE_PROBING 25   // How much the Z axis will be raised before traveling to the first probing point.
   #define Z_RAISE_BETWEEN_PROBINGS 10  // How much the Z axis will be raised when traveling from between next probing points
   #define Z_RAISE_AFTER_PROBING 50    // How much the Z axis will be raised after the last probing point.
 
@@ -685,7 +701,8 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = true; // set to true to invert the lo
 
   // A fix mounted probe, like the normal inductive probe, must be deactivated to go below Z_PROBE_OFFSET_FROM_EXTRUDER
   // when the hardware endstops are active.
-  #define FIX_MOUNTED_PROBE
+  //MarkG commented out
+  //#define FIX_MOUNTED_PROBE
 
   // A Servo Probe can be defined in the servo section below.
 
@@ -701,7 +718,8 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = true; // set to true to invert the lo
 
   // FSR sensors connected to thermistor input of the second extruder and mounted underneath
   // the print bed of the Deltaprintr
-  //#define FSR_BED_LEVELING
+  //MarkG uncommented
+  #define FSR_BED_LEVELING
 
   // If you've enabled AUTO_BED_LEVELING_FEATURE and are using the Z Probe for Z Homing,
   // it is highly recommended you also enable Z_SAFE_HOMING below!
@@ -719,11 +737,13 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = true; // set to true to invert the lo
 #if ENABLED(MANUAL_HOME_POSITIONS)
   #define MANUAL_X_HOME_POS 0
   #define MANUAL_Y_HOME_POS 0
-  //#define MANUAL_Z_HOME_POS 338.0 // For delta: Distance between nozzle and print surface after homing.
+  // MarkG detlatprintr
+//  #define MANUAL_Z_HOME_POS 331.6 // For delta: Distance between nozzle and print surface after homing.
+ #define MANUAL_Z_HOME_POS 338.0 // For delta: Distance between nozzle and print surface after homing.
                                 // Original Deltaprintr J-Head setting
   //#define MANUAL_Z_HOME_POS 317.8 // E3Dv6 all metal hotend setting
   //#define MANUAL_Z_HOME_POS 302.4 // E3Dv6 all metal hotend + heated bed setting (standard FSR standoffs)
-  #define MANUAL_Z_HOME_POS 313.6 // E3Dv6 all metal hotend + heated bed setting (modified FSR standoffs)
+  //#define MANUAL_Z_HOME_POS 313.6 // E3Dv6 all metal hotend + heated bed setting (modified FSR standoffs)
 #endif
 
 // Use "Z Safe Homing" to avoid homing with a Z probe outside the bed area.
@@ -753,12 +773,19 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = true; // set to true to invert the lo
 #define HOMING_FEEDRATE { HOMING_FEEDRATE_XYZ, HOMING_FEEDRATE_XYZ, HOMING_FEEDRATE_XYZ, HOMING_FEEDRATE_E }
 
 // delta speeds must be the same on xyz
-#define XYZ_STEPS                     56.45   // Default steps per unit for Deltaprintr
-#define EXTRUDER_STEPS                406     // Extruder steps for E3D Titan extruder
+// MarkG use original numbers
+//#define XYZ_STEPS                     56.45   // Default steps per unit for Deltaprintr
+//#define EXTRUDER_STEPS                406     // Extruder steps for E3D Titan extruder
+#define XYZ_STEPS                     57.8053   // Default steps per unit for Deltaprintr
+//#define EXTRUDER_STEPS                94.5     // Extruder steps for for Deltaprintr
+// try 2 MarkG
+#define EXTRUDER_STEPS                147.66     // Extruder steps for for Deltaprintr
 
 // default settings
 #define DEFAULT_AXIS_STEPS_PER_UNIT   {XYZ_STEPS, XYZ_STEPS, XYZ_STEPS, EXTRUDER_STEPS}
-#define DEFAULT_MAX_FEEDRATE          {200, 200, 200, 100}     // (mm/sec)
+// MarkG use original numbers
+//#define DEFAULT_MAX_FEEDRATE          {200, 200, 200, 100}     // (mm/sec)
+#define DEFAULT_MAX_FEEDRATE          {200, 200, 200, 25}     // (mm/sec)
 #define DEFAULT_MAX_ACCELERATION      {2000, 2000, 2000, 2000} // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for Skeinforge 40+, for older versions raise them a lot.
 
 #define DEFAULT_ACCELERATION          2000    // X, Y, Z and E acceleration in mm/s^2 for printing moves

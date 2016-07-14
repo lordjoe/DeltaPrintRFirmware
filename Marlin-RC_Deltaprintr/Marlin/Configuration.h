@@ -780,7 +780,8 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = true; // set to true to invert the lo
 //#define EXTRUDER_STEPS                94.5     // Extruder steps for for Deltaprintr
 // try 2 MarkG
 //#define EXTRUDER_STEPS                147.66     // Extruder steps for for Deltaprintr might be good for ABS
- #define EXTRUDER_STEPS                94.5     // Extruder steps for for Deltaprintr might be good for PLA
+//#define EXTRUDER_STEPS                94.5     // Extruder steps for for Deltaprintr might be good for PLA
+ #define EXTRUDER_STEPS                90.5     // Extruder steps for for Deltaprintr might be good for PLA
 
 // default settings
 #define DEFAULT_AXIS_STEPS_PER_UNIT   {XYZ_STEPS, XYZ_STEPS, XYZ_STEPS, EXTRUDER_STEPS}

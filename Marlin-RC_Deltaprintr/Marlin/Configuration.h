@@ -281,9 +281,11 @@
 
  //MarkG
  // Deltaprintr Mini All Metal Hotend calibrated July 6
-  #define  DEFAULT_Kp 10.35
-  #define  DEFAULT_Ki 1.52
-  #define  DEFAULT_Kd 17.63
+  #define  DEFAULT_Kp 12.77
+  #define  DEFAULT_Ki 1.80
+  #define  DEFAULT_Kd 22.60
+
+ 
 
 #endif // PIDTEMP
 
@@ -596,7 +598,8 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = true; // set to true to invert the lo
   #define MESH_NUM_Y_POINTS 3
   #define MESH_HOME_SEARCH_Z 4  // Z after Home, bed somewhere below but above 0.0.
 
-  //#define MANUAL_BED_LEVELING  // Add display menu option for bed leveling.
+ 
+// #define MANUAL_BED_LEVELING  // Add display menu option for bed leveling.
 
   #if ENABLED(MANUAL_BED_LEVELING)
     #define MBL_Z_STEP 0.025  // Step size while manually probing Z axis.
@@ -739,7 +742,7 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = true; // set to true to invert the lo
   #define MANUAL_Y_HOME_POS 0
   // MarkG detlatprintr
 //  #define MANUAL_Z_HOME_POS 331.6 // For delta: Distance between nozzle and print surface after homing.
- #define MANUAL_Z_HOME_POS 338.0 // For delta: Distance between nozzle and print surface after homing.
+ #define MANUAL_Z_HOME_POS 337.5 // For delta: Distance between nozzle and print surface after homing.
                                 // Original Deltaprintr J-Head setting
   //#define MANUAL_Z_HOME_POS 317.8 // E3Dv6 all metal hotend setting
   //#define MANUAL_Z_HOME_POS 302.4 // E3Dv6 all metal hotend + heated bed setting (standard FSR standoffs)
@@ -781,7 +784,8 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = true; // set to true to invert the lo
 // try 2 MarkG
 //#define EXTRUDER_STEPS                147.66     // Extruder steps for for Deltaprintr might be good for ABS
 //#define EXTRUDER_STEPS                94.5     // Extruder steps for for Deltaprintr might be good for PLA
- #define EXTRUDER_STEPS                90.5     // Extruder steps for for Deltaprintr might be good for PLA
+// #define EXTRUDER_STEPS                90.5     // Extruder steps for for Deltaprintr might be good for PLA
+ #define EXTRUDER_STEPS                85.5     // Extruder steps for for Deltaprintr might be good for PLA
 
 // default settings
 #define DEFAULT_AXIS_STEPS_PER_UNIT   {XYZ_STEPS, XYZ_STEPS, XYZ_STEPS, EXTRUDER_STEPS}

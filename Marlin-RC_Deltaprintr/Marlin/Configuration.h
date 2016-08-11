@@ -789,9 +789,10 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = true; // set to true to invert the lo
 
 // default settings
 #define DEFAULT_AXIS_STEPS_PER_UNIT   {XYZ_STEPS, XYZ_STEPS, XYZ_STEPS, EXTRUDER_STEPS}
-// MarkG use original numbers
+// MarkG use original numbers, well, up last param a bit...
 //#define DEFAULT_MAX_FEEDRATE          {200, 200, 200, 100}     // (mm/sec)
-#define DEFAULT_MAX_FEEDRATE          {200, 200, 200, 25}     // (mm/sec)
+//#define DEFAULT_MAX_FEEDRATE          {200, 200, 200, 25}     // (mm/sec)original
+#define DEFAULT_MAX_FEEDRATE          {200, 200, 200, 30}     // (mm/sec)original
 #define DEFAULT_MAX_ACCELERATION      {2000, 2000, 2000, 2000} // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for Skeinforge 40+, for older versions raise them a lot.
 
 #define DEFAULT_ACCELERATION          2000    // X, Y, Z and E acceleration in mm/s^2 for printing moves

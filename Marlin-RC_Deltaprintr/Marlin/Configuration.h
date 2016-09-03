@@ -742,9 +742,10 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = true; // set to true to invert the lo
   #define MANUAL_Y_HOME_POS 0
   // MarkG detlatprintr
 //  #define MANUAL_Z_HOME_POS 331.6 // For delta: Distance between nozzle and print surface after homing.
- #define MANUAL_Z_HOME_POS 337.5 // For delta: Distance between nozzle and print surface after homing.
+ //#define MANUAL_Z_HOME_POS 337.5 // For delta: Distance between nozzle and print surface after homing. 
                                 // Original Deltaprintr J-Head setting
-  //#define MANUAL_Z_HOME_POS 317.8 // E3Dv6 all metal hotend setting
+  #define MANUAL_Z_HOME_POS 317.3 // E3Dv6 all metal hotend setting plus washers slewis
+   //#define MANUAL_Z_HOME_POS 317.8 // E3Dv6 all metal hotend setting
   //#define MANUAL_Z_HOME_POS 302.4 // E3Dv6 all metal hotend + heated bed setting (standard FSR standoffs)
   //#define MANUAL_Z_HOME_POS 313.6 // E3Dv6 all metal hotend + heated bed setting (modified FSR standoffs)
 #endif
